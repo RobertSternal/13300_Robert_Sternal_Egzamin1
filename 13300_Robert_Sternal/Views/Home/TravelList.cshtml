@@ -1,0 +1,42 @@
+﻿@model ICollection<_13300_Robert_Sternal.Models.TravelsModel> 
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<h1>Lista wpisów</h1>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Nazwa podróży
+        </th>
+        <th>
+            Długość trasy
+        </th>
+        <th>
+            Cena podróży
+        </th>
+        <th>
+            Średnie spalanie
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in @Model)
+    {
+        <tr>
+            <td>
+                @item.TravelName
+            </td>
+
+            <td>
+                @item.TravelLength
+            </td>
+            <td>
+
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

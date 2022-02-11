@@ -28,6 +28,8 @@ namespace _13300_Robert_Sternal
             services.AddControllersWithViews();
 
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration["Data:Zadanie:ConnectionString"]));
+
+            services.AddTransient<ICrudTravelRepository, CrudTravelRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -13,10 +13,13 @@ namespace _13300_Robert_Sternal.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
+        private ICrudTravelRepository _repository;
+
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, ICrudTravelRepository repository)
         {
             _logger = logger;
             _context = context;
+            _repository = repository;
         }
 
         public IActionResult Index()
@@ -35,12 +38,17 @@ namespace _13300_Robert_Sternal.Controllers
             {
                 _context.Add(model);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("TravelList");
             }
             else
             {
                 return View("AddForm");
             }
+        }
+
+        public IActionResult TravelList()
+        {
+            return View(_repository.FindAll());
         }
         public IActionResult Privacy()
         {
