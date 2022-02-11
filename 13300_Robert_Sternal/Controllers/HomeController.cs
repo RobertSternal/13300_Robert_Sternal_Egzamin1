@@ -12,10 +12,11 @@ namespace _13300_Robert_Sternal.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext _context;
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
@@ -23,6 +24,24 @@ namespace _13300_Robert_Sternal.Controllers
             return View();
         }
 
+        public IActionResult AddForm()
+        {
+            return View();
+        }
+
+        public IActionResult AddTravel(TravelsModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(model);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("AddForm");
+            }
+        }
         public IActionResult Privacy()
         {
             return View();
